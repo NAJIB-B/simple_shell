@@ -39,11 +39,10 @@ int main(int argc, char **argv)
 
 	(void)argc;
 
-	while(1)
+	while (1)
 	{
-
 		printf("#cisfun$ ");
-		
+
 		args = get_user_input();
 		path_to_check = _strdup(args[0]);
 		path = find_path(path_to_check);
@@ -53,18 +52,15 @@ int main(int argc, char **argv)
 			free_args(args);
 			continue;
 		}
-
 		args[0] = _strdup(path);
 		free(path);
 
 		child_process = fork();
-
 		if (child_process == -1)
 		{
 			perror("fork");
 			return (1);
 		}
-
 		if (child_process == 0)
 		{
 			execve(args[0], args, environ);
@@ -74,8 +70,6 @@ int main(int argc, char **argv)
 		{
 			wait(&i);
 		}
-
 		free_args(args);
-
 	}
 }
