@@ -20,6 +20,7 @@ void free_args(char **args)
 	{
 		free(args[i]);
 	}
+	printf("this is the address for args %p\n", *args);
 	free(args);
 }
 
@@ -42,10 +43,12 @@ int main(int argc, char **argv, char **envc)
 
 	while (1)
 	{
-		printf("#cisfun$ ");
+		printf("$ ");
 
 		args = get_user_input();
+
 		path_to_check = _strdup(args[0]);
+
 		path = find_path(path_to_check, envc);
 
 		if (path == NULL)
