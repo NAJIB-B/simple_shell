@@ -20,7 +20,6 @@ void free_args(char **args)
 	{
 		free(args[i]);
 	}
-	printf("this is the address for args %p\n", *args);
 	free(args);
 }
 
@@ -56,8 +55,10 @@ int main(int argc, char **argv, char **envc)
 			free_args(args);
 			continue;
 		}
-		args[0] = _strdup(path);
-		free(path);
+
+		free(args[0]);
+
+		args[0] = path;
 
 		child_process = fork();
 		if (child_process == -1)
