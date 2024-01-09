@@ -5,7 +5,6 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
-extern char **environ;
 
 /**
  * free_args - free arguments array
@@ -31,7 +30,7 @@ void free_args(char **args)
  * Return: returns 0 on success and 1 otherwise
  */
 
-int main(int argc, char **argv)
+int main(int argc, char **argv, char **envc)
 {
 	int i;
 	char **args, *path, *path_to_check;
@@ -45,7 +44,7 @@ int main(int argc, char **argv)
 
 		args = get_user_input();
 		path_to_check = _strdup(args[0]);
-		path = find_path(path_to_check);
+		path = find_path(path_to_check, envc);
 
 		if (path == NULL)
 		{
@@ -63,7 +62,7 @@ int main(int argc, char **argv)
 		}
 		if (child_process == 0)
 		{
-			execve(args[0], args, environ);
+			execve(args[0], args, envc);
 			perror(argv[0]);
 		}
 		else

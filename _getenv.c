@@ -3,26 +3,25 @@
 #include <stdlib.h>
 #include <string.h>
 
-extern char **environ;
-
 
 /**
  * _getenv - get the value of an enviromental variable
  * @name: name of variable to look for
+ * @envc: array of enviromental variables
  *
  * Return: returns the value of the env variable or NULL if is not found
  */
 
-char *_getenv(const char *name)
+char *_getenv(const char *name, char **envc)
 {
 	int i, cmp_val;
 	char *env, *env_result;
 	char *environ_copy;
 	char *arg = _strdup(name);
 
-	for (i = 0; environ[i] != NULL; ++i)
+	for (i = 0; envc[i] != NULL; ++i)
 	{
-		environ_copy = _strdup(environ[i]);
+		environ_copy = _strdup(envc[i]);
 		env = strtok(environ_copy, "=");
 
 		cmp_val = strcmp(env, arg);

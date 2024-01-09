@@ -33,17 +33,18 @@ char *get_last_part(char *str)
 /**
  * find_path - checks for the path of a command
  * @command: the command to check for
+ * @envc: array of the enviroment variables
  *
  * Return: returns the path to the command
  */
 
-char *find_path(char *command)
+char *find_path(char *command, char **envc)
 {
 	char *path, *token, *arg, *valid_path;
 
 	arg = get_last_part(command);
 
-	path = _getenv("PATH");
+	path = _getenv("PATH", envc);
 
 	token = strtok(path, ":");
 

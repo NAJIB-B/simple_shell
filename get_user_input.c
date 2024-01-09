@@ -38,7 +38,7 @@ char **tokenizer(char *str)
 	}
 
 	token = strtok(str, " ");
-
+	printf("the address of the token is %p", token);
 	while (token != NULL)
 	{
 		result[i] = _strdup(token);
