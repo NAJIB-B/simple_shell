@@ -8,6 +8,7 @@
 
 /**
  * free_args - free arguments array
+ * @args: args array to free
  *
  */
 
@@ -26,6 +27,7 @@ void free_args(char **args)
  * main - Simple shell program entry point
  * @argc: number of args passed to main
  * @argv: array of args passed to main
+ * @envc: array of enviromental varibles
  *
  * Return: returns 0 on success and 1 otherwise
  */
