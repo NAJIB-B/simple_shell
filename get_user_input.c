@@ -37,7 +37,13 @@ char **tokenizer(char *str)
 		return (NULL);
 	}
 
-	token = strtok(str, " ");
+	token = strtok(str, " \t");
+	if (token == NULL)
+	{
+		free(result);
+		free(str);
+		return (NULL);
+	}
 	while (token != NULL)
 	{
 		result[i] = _strdup(token);
@@ -46,6 +52,7 @@ char **tokenizer(char *str)
 	}
 
 	result[i] = NULL;
+
 
 	free(str);
 	return (result);
@@ -90,6 +97,10 @@ char **get_user_input()
 
 
 	result = tokenizer(lineptr);
+
+	if (result == NULL)
+		return (NULL);
+
 
 	return (result);
 }
