@@ -15,14 +15,14 @@ char *get_last_part(char *str)
 {
 	char *last_arg = NULL, *token;
 
-	token = strtok(str, "/");
+	token = strtok(str, "/_");
 
 	while (token != NULL)
 	{
 		if (last_arg != NULL)
 			free(last_arg);
 		last_arg = _strdup(token);
-		token = strtok(NULL, "/");
+		token = strtok(NULL, "/_");
 	}
 
 	free(str);
