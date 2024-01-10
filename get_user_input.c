@@ -37,7 +37,14 @@ char **tokenizer(char *str)
 		return (NULL);
 	}
 
-	token = strtok(str, " ");
+	token = strtok(str, " \t");
+	if (token == NULL)
+	{
+		free(result);
+		free(str);
+		return (NULL);
+	}
+
 	while (token != NULL)
 	{
 		result[i] = _strdup(token);
