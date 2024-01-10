@@ -51,18 +51,14 @@ int main(int argc, char **argv, char **envc)
 	pid_t child_process;
 
 	(void)argc;
-
 	while (1)
 	{
 		print_prompt("$ ", _strlen("$ "));
-
 		args = get_user_input();
 
 		if (args == NULL)
 			continue;
-
 		path_to_check = _strdup(args[0]);
-
 		path = find_path(path_to_check, envc, argv[0]);
 
 		if (path == NULL)
@@ -70,9 +66,7 @@ int main(int argc, char **argv, char **envc)
 			free_args(args);
 			continue;
 		}
-
 		free(args[0]);
-
 		args[0] = path;
 
 		child_process = fork();

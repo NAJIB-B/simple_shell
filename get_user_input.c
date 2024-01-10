@@ -16,7 +16,6 @@ char **tokenizer(char *str)
 	int array_size = 0, i = 0;
 
 	dup_input = _strdup(str);
-
 	token = strtok(dup_input, " ");
 
 	while (token != NULL)
@@ -25,7 +24,6 @@ char **tokenizer(char *str)
 
 		token = strtok(NULL, " ");
 	}
-
 	free(dup_input);
 
 	result = malloc(sizeof(char *) * (array_size + 1));
@@ -50,9 +48,7 @@ char **tokenizer(char *str)
 		i++;
 		token = strtok(NULL, " ");
 	}
-
 	result[i] = NULL;
-
 
 	free(str);
 	return (result);
@@ -81,11 +77,8 @@ char **get_user_input()
 		free(lineptr);
 		exit(0);
 	}
-
 	if (lineptr[bytes_read - 1] == '\n')
-	{
 		lineptr[bytes_read - 1] = '\0';
-	}
 
 	cmp_val = _strcmp(exit_str, lineptr);
 
@@ -94,13 +87,10 @@ char **get_user_input()
 		free(lineptr);
 		exit(0);
 	}
-
-
 	result = tokenizer(lineptr);
 
 	if (result == NULL)
 		return (NULL);
-
 
 	return (result);
 }
