@@ -4,7 +4,19 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <signal.h>
 
+/**
+ * print_prompt - prints a prompt if input is from terminal
+ * @c: characters to print
+ * @len: length of the character to print
+ *
+ */
+void print_prompt(char *c, int len)
+{
+	if (isatty(STDIN_FILENO))
+		write(STDOUT_FILENO, c, len);
+}
 
 /**
  * free_args - free arguments array
@@ -42,7 +54,7 @@ int main(int argc, char **argv, char **envc)
 
 	while (1)
 	{
-		printf("$ ");
+		print_prompt("$ ", _strlen("$ "));
 
 		args = get_user_input();
 

@@ -62,6 +62,8 @@ char **get_user_input()
 	char *lineptr, **result;
 	size_t n = 0;
 	ssize_t bytes_read;
+	int cmp_val;
+	char exit_str[] = "exit";
 
 	lineptr = NULL;
 
@@ -70,13 +72,22 @@ char **get_user_input()
 	if (bytes_read == -1)
 	{
 		free(lineptr);
-		exit(99);
+		exit(0);
 	}
 
 	if (lineptr[bytes_read - 1] == '\n')
 	{
 		lineptr[bytes_read - 1] = '\0';
 	}
+
+	cmp_val = _strcmp(exit_str, lineptr);
+
+	if (cmp_val == 0)
+	{
+		free(lineptr);
+		exit(0);
+	}
+
 
 	result = tokenizer(lineptr);
 
