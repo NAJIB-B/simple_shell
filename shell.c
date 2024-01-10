@@ -48,7 +48,7 @@ int main(int argc, char **argv, char **envc)
 
 		path_to_check = _strdup(args[0]);
 
-		path = find_path(path_to_check, envc);
+		path = find_path(path_to_check, envc, argv[0]);
 
 		if (path == NULL)
 		{
